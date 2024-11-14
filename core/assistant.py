@@ -62,7 +62,7 @@ class PropertyAssistant:
         
         
         """
-        self._history_manager = HistoryManager(user_id)
+        self.history_manager = HistoryManager(user_id)
 
         # Start the conversation with a system message if it's a new conversation
         if not self._history_manager.get_current_messages():
