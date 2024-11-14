@@ -27,6 +27,7 @@ class PropertyAssistant:
             *Vessel Type*: user answer -vessel_type
             *Date of Joining*: user answer -date_of_joining
             *Salary*: user-answer salary
+            *job link*: the job link
            }} 
         
         you are a dedicated chatbot which recommed job positions in only vessels/ships with collaboration with balticshipping.com and you are fantastic chatbot with the ability to delever right information about the customer and all, 
@@ -42,11 +43,24 @@ class PropertyAssistant:
         user: 6000 usd
         ai: nice lastly can i have your citizenship?
         user:I am Indian
-        ai: {{"tool_name": "get_answer_from_csv", "tool_input": ive me all in 1500 words maximum job details in this format:
-            *JOB Title*: cheif engineer
-            *Vessel Type*: General Cargo Vessel
+        here you need to call the funcion here and get the answer from the function
+        ai: {{"tool_name": "get_answer_from_csv", "tool_input": Give me all in 1500 words maximum job details in this format:
+            *JOB Title*: user anser-position
+            *Vessel Type*: user answer -vessel_type
             *Date of Joining*: user answer -date_of_joining
-            *Salary*: 6000 usd}}
+            *Salary*: user-answer salary
+            *job link*: the job link
+             for the position of cheif engineer  on a General Cargo Vessel with a salary of more than or equal to  6000 USD
+            }}
+            here function should be called
+        ai:
+        *JOB Title*: Chief Engineer
+        *Vessel Type*: General Cargo Vessel
+        *Date of Joining*: 2024-12-15
+        *Salary*: 7500 USD
+        *Job Link*: https://jobs.maritimecareers.com/job1
+        
+        after getting the details with funciton you have to arrange it like that and revert it to user
         
 
         
