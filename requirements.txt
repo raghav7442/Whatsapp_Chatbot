@@ -1,0 +1,11 @@
+groq
+twilio
+python-dotenv
+termcolor
+flask==3.0.2
+pymongo
+langchain==0.2.7
+langchain-experimental
+langchain-openai==0.1.14
+langchain-mongodb
+langchain-core
