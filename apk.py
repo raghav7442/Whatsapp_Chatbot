@@ -52,4 +52,4 @@ def receive_message():
     #     return 'Error processing request', 500
 
 if __name__ == '__main__':
-    app.run(debug=False, port=9001)
+    app.run(debug=False,host='0.0.0.0', port=9001)
