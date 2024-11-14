@@ -19,23 +19,23 @@ mongo_client = MongoClient(os.getenv('MONGODB_URI'))
 db = mongo_client[os.getenv("DB_NAME")]
 chats_collection = db[os.getenv("COLLECTION_NAME")]
 
-# Initialize the assistant
-property_assistant = PropertyAssistant()
-conversation_handler = ConversationHandler(property_assistant)
-
 @app.route('/chat', methods=['POST'])
 def receive_message():
-    try:
+    # try:
         # Get incoming message and sender ID from Twilio request
         user_message = request.form['Body']
         sender_id = request.form['From']
         logging.info("Received message from {}: {}".format(sender_id, user_message))
         
-        # Initialize HistoryManager for the user
-        history_manager = HistoryManager(sender_id)
+        # Initialize PropertyAssistant with sender_id as user_id
+        property_assistant = PropertyAssistant(user_id=sender_id)
+        conversation_handler = ConversationHandler(property_assistant)
+        
+        # Initialize HistoryManager for this user
+        history_manager = HistoryManager(user_id=sender_id)
         
         # Retrieve current conversation messages
-        conversation_history = history_manager.get_current_messages()
+        conversation_history = property_assistant.conversation_history
 
         # Get AI response via LLM using conversation history
         ai_response = conversation_handler.handle_conversation(user_message)
@@ -47,9 +47,9 @@ def receive_message():
         send_message(sender_id, ai_response)
         return 'Valid response', 200
 
-    except Exception as e:
-        logging.error("Error handling the message: {}".format(e))
-        return 'Error processing request', 500
+    # except Exception as e:
+    #     logging.error("Error handling the message: {}".format(e))
+    #     return 'Error processing request', 500
 
 if __name__ == '__main__':
-    app.run(debug=False, port=20000)
+    app.run(debug=False, port=9001)

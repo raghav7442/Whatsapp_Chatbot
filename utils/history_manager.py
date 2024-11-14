@@ -12,7 +12,7 @@ class HistoryManager:
         self.current_conversation = None
 
         # Initialize MongoDB client and access collection
-        self.client = MongoClient(os.getenv("MONGO_URI"))  # Change to your MongoDB URI if needed
+        self.client = MongoClient(os.getenv("MONGO_URI"))
         self.db = self.client[self.db_name]
         self.collection = self.db[self.collection_name]
 
@@ -64,6 +64,16 @@ class HistoryManager:
             {"user_id": self.user_id, "chats.timestamp": self.current_conversation["timestamp"]},
             {"$push": {"chats.$.messages": formatted_message}}
         )
+
+    def add_user_assistant_pair(self, user_message, assistant_response):
+        """Add a user message and assistant response as a pair to the conversation"""
+        message_pair = [
+            {"role": "user", "content": user_message},
+            {"role": "assistant", "content": assistant_response}
+        ]
+        # Add both messages in a single call to `add_message`
+        for message in message_pair:
+            self.add_message(message)
 
     def get_current_messages(self):
         """Retrieve messages from the current conversation"""

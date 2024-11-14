@@ -1,6 +1,7 @@
 import json
 from termcolor import colored
 from utils.logger import logger
+from config.tools_config import TOOLS_CONFIG
 
 class ConversationHandler:
     def __init__(self, assistant):
@@ -28,7 +29,7 @@ class ConversationHandler:
             tool_choice="auto",
             max_tokens=4096
         )
-
+        print(response)
         response_message = response.choices[0].message
         tool_calls = response_message.tool_calls
 

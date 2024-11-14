@@ -19,9 +19,8 @@ class PropertyAssistant:
         3. Ask him about the vessel type 
         4. ask him about the expected salary for the particular position
         5. Ask him about the citizenship of him
-        than you will call functon get_answer_from_csv with all the details like position, vessel, and expected salary like this
-        For queries requiring tool usage (for searching the job with csv):
-            - Respond with a JSON object containing 'tool_name' and 'tool_input'.
+       after getting all the requirements from user, you can use get_answer_from_csv tool for searching the actual jobs which is more precise to user
+            
             - Example: {{"tool_name": "get_answer_from_csv", "tool_input":"Give me all in 1500 words maximum job details in this format:
             *JOB Title*: user anser-position
             *Vessel Type*: user answer -vessel_type
@@ -42,15 +41,13 @@ class PropertyAssistant:
         user: 6000 usd
         ai: nice lastly can i have your citizenship?
         user:I am Indian
-        after getting all the details you will call the funciton get_answer_from_csv, and give him job openings in your availabe functions
-        Example: 
-        {{"tool_name": "get_answer_from_csv", "tool_input":"Give me all in 1500 words maximum job details in this format:
-            *JOB Title*: position_name
-            *Vessel Type*: vessel_type
-            *Date of Joining*: date_of_joining
-            *Salary*: salary
-            Apply Link*: -one link only 'without writing [Job Link] just provide link'
-            for the position of "user_answers-'position'" on a user_answers-'vessel' with a salary of more than or equal to user_answers['salary' USD" }}
+        ai: {{"tool_name": "get_answer_from_csv", "tool_input": ive me all in 1500 words maximum job details in this format:
+            *JOB Title*: cheif engineer
+            *Vessel Type*: General Cargo Vessel
+            *Date of Joining*: user answer -date_of_joining
+            *Salary*: 6000 usd}}
+        
+
         
         after giving job detils if user want more jobs ask him core questions like position, salary, vessel type
         or if user want to chat chat him like a good manager in professional way
