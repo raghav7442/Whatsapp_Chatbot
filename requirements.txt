@@ -10,3 +10,4 @@ langchain-openai==0.1.14
 langchain-mongodb
 langchain-core
 pandas
+tabulate
