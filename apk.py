@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 import os
 from core.assistant import PropertyAssistant
-from core.conversation_handler import ConversationHandler
+from core.conversation import ConversationHandler
 from utils.twilio_api import send_message  
 import logging
 from utils.history_manager import HistoryManager  
