@@ -19,6 +19,11 @@ class HistoryManager:
         # Ensure a document for the user exists
         self.ensure_user_document()
         self.load_or_create_conversation()
+    
+    def add_user_assistant_pair(self, user_message, assistant_response):
+        """Adds a user message and assistant response pair to the conversation history."""
+        self.add_message({"role": "user", "content": user_message})
+        self.add_message({"role": "assistant", "content": assistant_response})
 
     def ensure_user_document(self):
         """Ensure a document exists for the user in MongoDB"""
