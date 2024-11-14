@@ -6,16 +6,19 @@ class ConversationHandler:
     def __init__(self, assistant):
         self.assistant = assistant
 
-    def handle_conversation(self, user_prompt: str):
+   def handle_conversation(self, user_prompt: str):
+        # Print the user prompt
         print("\n" + colored("👤 User Query: ", "green", attrs=['bold']) + user_prompt + "\n")
         
-        self.assistant.add_to_history({
-            "role": "user",
-            "content": user_prompt
-        })
-        
+        # Add user message and process conversation
         try:
-            return self._process_conversation()
+            # Get assistant's response to the user prompt
+            ai_response = self._process_conversation()
+
+            # Use the new method to add both messages as a pair to history
+            self.assistant.history_manager.add_user_assistant_pair(user_prompt, ai_response)
+
+            return ai_response
         except Exception as e:
             logger.error(f"ERROR: {str(e)}")
             return f"Error occurred: {str(e)}"
