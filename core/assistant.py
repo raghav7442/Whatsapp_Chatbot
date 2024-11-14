@@ -2,10 +2,11 @@ from groq import Groq
 from config.tools_config import TOOLS_CONFIG
 from functions.backend import get_answer_from_csv
 from utils.history_manager import HistoryManager
+import os
 
 class PropertyAssistant:
     def __init__(self, user_id):
-        self._client = Groq(api_key="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")
+        self._client = Groq(api_key=os.getenv("GROQ_API_KEY"))
         self._model = "llama-3.1-70b-versatile"
         self.name = "Property Recommender Chatbot"
         self._available_functions = {
